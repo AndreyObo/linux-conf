@@ -1,10 +1,5 @@
 history:
 
-mkdir dir-369007
-
-sudo chmod 700 ./dir-369007
-setfacl -m mask::rwx ./dir-369007
-
 sudo useradd -u 5501 user1
 sudo useradd -u 5502 user2
 sudo useradd -u 5503 user3
@@ -14,11 +9,20 @@ sudo groupadd -g 4444 curators
 sudo useradd curator1 -G curators
 sudo useradd curator2 -G curators
 
-sudo setfacl -d -m g:curators:rx ./dir-369007
+mkdir dir-369007
+chmod 700 ./dir-369007
+
+setfacl -d -m g:curators:rx ./dir-369007
+setfacl -m g:curators:rx ./dir-369007
 
 setfacl -d -m user:user1:rwx ./dir-369007
 setfacl -d -m user:user2:rwx ./dir-369007
 setfacl -d -m user:user3:rwx ./dir-369007
+
+setfacl -m user:user1:rwx ./dir-369007
+setfacl -m user:user2:rwx ./dir-369007
+setfacl -m user:user3:rwx ./dir-369007
+
 
 sudo su user1
 echo "user1 create file" > ./dir-369007/f2
